@@ -3,20 +3,18 @@
 # Boot script
 #
 # Author:  J. Barthelemy
-# Version: 04 July 2017
+# Version: 07 August 2017
 
 from machine import UART
+from network import WLAN
 import pycom
 import os
-from network import WLAN
-
-NANO_GATEWAY = False          # is the lopy joining a TTN nano gateway
-MAX_JOIN_ATTEMPT = 50         # max number of connection attemps to TTN
-INT_SAMPLING = 1000 * 60 * 15 # sampling interval
 
 # deactivate wifi
-wlan = WLAN()
-wlan.deinit()
+if pycom.wifi_on_boot:
+    wlan = WLAN()
+    wlan.deinit()
+    pycom.wifi_on_boot(False)
 
 # disabling the heartbeat
 pycom.heartbeat(False)
