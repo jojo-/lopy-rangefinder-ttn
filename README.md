@@ -1,6 +1,6 @@
 # ttn-lopy-water-level
 
-A rangegind sensor for The Things Network using a LoPy and a MB7360 ultrasonic rangefinder.
+A rangefinder sensor for The Things Network using a LoPy and a MB7360 ultrasonic rangefinder.
 
 To convert the RS232 signal from the MB7360 to a TTL one for the LoPy, a MAX3232 board is also used.
 
