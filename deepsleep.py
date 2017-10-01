@@ -1,8 +1,9 @@
 from machine import UART
 from machine import Pin
 import pycom
+import gc
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 PIN_MASK = 0b1010
@@ -16,7 +17,7 @@ POWER_ON_WAKE = 1 << 5
 class DeepSleep:
 
     WPUA_ADDR = const(0x09)
-    OPTION_REG_ADDR = const(0x0E)
+    OPTION_REG_ADDR = const(0x0E) 
     IOCAP_ADDR = const(0x1A)
     IOCAN_ADDR = const(0x1B)
 
@@ -153,6 +154,7 @@ class DeepSleep:
         self.poke(MIN_BAT_ADDR, value)
 
     def go_to_sleep(self, seconds):
+        gc.collect()
         while True:
             try:
                 self.calibrate()

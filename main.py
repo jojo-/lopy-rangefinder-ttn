@@ -3,7 +3,7 @@
 # Main script
 #
 # Author:  J. Barthelemy
-# Version: 28 August 2017
+# Version: 01 October 2017
 
 import time
 import socket
@@ -23,9 +23,6 @@ pin_activation_sensor = Pin('P19', mode=Pin.OUT, pull=Pin.PULL_DOWN)
 
 # setting up the Analog/Digital Converter with 12 bits
 adc = ADC(bits=12)
-
-# create an analog pin on P20 for the ultrasonic sensor
-apin = adc.channel(pin='P20', attn=ADC.ATTN_11DB)
 
 # create an analog pin on P16 for the battery voltage
 batt = adc.channel(pin='P16', attn=ADC.ATTN_2_5DB)
@@ -201,11 +198,15 @@ def read_battery_level():
 ################################################################################
 '''
 
-distance = read_distance()
-battery  = read_battery_level()
-if join_lora(config.FORCE_JOIN):
-    for i in range(config.N_TX):
-        send_LPP_over_lora(distance, battery)
+while True:
+
+    distance = read_distance()
+    battery  = read_battery_level()
+    if join_lora(config.FORCE_JOIN):
+        for i in range(config.N_TX):
+            send_LPP_over_lora(distance, battery)
+
+    time.sleep_ms(4999)
 
 gc.collect()
 ds.go_to_sleep(config.INT_SAMPLING)

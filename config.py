@@ -3,16 +3,17 @@
 # Configuration for The Things Network
 #
 # Author:  J. Barthelemy
-# Version: 28 August 2017
+# Version: 01 October 2017
 
 # credentials
-APP_EUI = 'XX'
-APP_KEY = 'YY'
+APP_EUI = 'your app eui'
+APP_KEY = 'your app key'
 
 # max number of connection attemps to TTN
 MAX_JOIN_ATTEMPT = const(50)
 
 # number of packets to be transmit with the same data  (retries)
+# default is 3
 N_TX = const(3)
 
 # data rate used to send message via LoRaWAN:
@@ -20,7 +21,8 @@ N_TX = const(3)
 DATA_RATE = const(4)
 
 # sampling interval (in seconds)
-INT_SAMPLING = const(60 * 15)
+# default is 15 mins = 15 * 60
+INT_SAMPLING = const(60)
 
 # GPS coordinates
 LAT = -34.4079
